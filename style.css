@@ -14,6 +14,17 @@
     --lol-grey: #5B5A56;       /* Texto secundário, placeholders */
 }
 
+html {
+    /* Define o cursor padrão (manopla) para toda a página */
+    cursor: url('https://raw.githubusercontent.com/lol-rs/cursors/main/src/normal.cur'), auto;
+}
+
+/* Define o cursor de link (mão) para todos os elementos clicáveis */
+button, a, .card, .filtro-rota, .modal-close {
+    cursor: url('https://raw.githubusercontent.com/lol-rs/cursors/main/src/link.cur'), pointer;
+}
+
+
 body {
     margin: 0; /* Remove a margem padrão do body */
     background-color: var(--lol-blue-dark); /* Define a cor de fundo usando uma variável */
@@ -45,6 +56,12 @@ header h1 {
     white-space: nowrap; /* Impede a quebra de linha do texto */
 }
 
+#caixa-busca {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 #caixa-busca input {
     padding: 0.375rem 0.75rem; /* Espaçamento interno */
     border-radius: 1rem; /* Arredonda as bordas */
@@ -55,7 +72,6 @@ header h1 {
     transition: all 0.2s ease; /* Adiciona uma transição suave para todas as propriedades */
     width: 30rem; /* Largura do input */
     color: var(--lol-gold-light); /* Cor do texto digitado */
-    margin-right: .5rem; /* Margem à direita */
 }
 
 #caixa-busca input::placeholder {
@@ -74,14 +90,25 @@ header h1 {
     padding: 1rem 2rem; /* Espaçamento interno */
     border-radius: 1rem; /* Arredonda as bordas */
     border: 1px solid var(--lol-gold); /* Borda dourada */
-    cursor: pointer; /* Muda o cursor para uma mão ao passar por cima */
     font-family: inherit; /* Herda a família da fonte */
     font-weight: 500; /* Peso da fonte */
-    font-size: 1rem; /* Tamanho da fonte */
     white-space: nowrap; /* Impede a quebra de linha do texto */
     transition: background-color 0.2s ease, color 0.2s ease; /* Transição suave para cor de fundo e cor do texto */
     background-color: transparent; /* Fundo transparente */
     color: var(--lol-gold); /* Cor do texto */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-icon {
+    display: none; /* Oculto por padrão em telas grandes */
+    width: 20px;
+    height: 20px;
+}
+
+.search-text {
+    font-size: 1rem; /* Tamanho da fonte */
 }
 
 #botao-busca:hover {
@@ -119,7 +146,6 @@ main {
     text-align: center;
     overflow: hidden;
     transition: all 0.3s ease;
-    cursor: pointer;
 }
 
 .card:hover {
@@ -172,7 +198,6 @@ main {
     height: 120px;
     border: 3px solid var(--lol-grey);
     border-radius: 4px;
-    cursor: pointer;
     transition: all 0.3s ease;
     object-fit: cover;
     object-position: center top;
@@ -219,7 +244,6 @@ main {
     border: none;
     color: var(--lol-gold-light);
     font-size: 2.5rem;
-    cursor: pointer;
     line-height: 1;
 }
 
@@ -305,7 +329,6 @@ main {
 .filtro-rota {
     width: 40px;
     height: 40px;
-    cursor: pointer;
     opacity: 0.5;
     filter: grayscale(80%);
     transition: all 0.2s ease-in-out;
@@ -421,9 +444,29 @@ main {
         top: 180px; /* Ajusta a posição do sticky para o novo layout do header em telas menores */
     }
 
-    div input { /* Estilos para o input em telas menores */
-        width: 90vw; /* Largura baseada na largura da viewport */
+    #caixa-busca {
+        width: 100%;
+        justify-content: center;
+    }
+
+    #caixa-busca input { /* Estilos para o input em telas menores */
+        width: 65vw; /* Largura reduzida para caber ao lado do botão */
         font-size: 1.2rem; /* Reduz o tamanho da fonte */
+    }
+
+    #botao-busca {
+        padding: 0.75rem; /* Espaçamento quadrado */
+        border-radius: 50%; /* Deixa o botão redondo */
+        width: 48px;
+        height: 48px;
+    }
+
+    .search-icon {
+        display: block; /* Mostra o ícone em telas pequenas */
+    }
+
+    .search-text {
+        display: none; /* Esconde o texto "Buscar" em telas pequenas */
     }
 
     main { /* Estilos para o main em telas menores */

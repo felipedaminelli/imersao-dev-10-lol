@@ -12,7 +12,10 @@
         <h1>Campeões de League of Legends</h1>
         <div id="caixa-busca">
             <input type="text" placeholder="Digite um Campeão" id="input-busca">
-            <button id="botao-busca" onclick="iniciarBusca()">Buscar</button>
+            <button id="botao-busca" onclick="iniciarBusca()" aria-label="Buscar">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <span class="search-text">Buscar</span>
+            </button>
         </div>
     </header>
     <div id="audio-container"></div>
