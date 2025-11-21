@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campeões de League of Legends</title>
+    <link rel="icon" type="image/x-icon" href="https://www.leagueoflegends.com/static/favicon-0cf29ce019f7b0de76758de8a2a42223.ico">
+       <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Campeões de League of Legends</h1>
+        <div id="caixa-busca">
+            <input type="text" placeholder="Digite um Campeão" id="input-busca">
+            <button id="botao-busca" onclick="iniciarBusca()">Buscar</button>
+        </div>
+    </header>
+    <div id="audio-container"></div>
+
+    <div class="filter-bar">
+        <div id="filtros-rota-icones">
+            <img src="https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/images/position-selector/positions/icon-position-top.png" alt="Top Lane" class="filtro-rota" data-rota="Top">
+            <img src="https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/images/position-selector/positions/icon-position-jungle.png" alt="Jungle" class="filtro-rota" data-rota="Jungle">
+            <img src="https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/images/position-selector/positions/icon-position-middle.png" alt="Mid Lane" class="filtro-rota" data-rota="Mid">
+            <img src="https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/images/position-selector/positions/icon-position-bottom.png" alt="Bottom Lane" class="filtro-rota" data-rota="ADC">
+            <img src="https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/images/position-selector/positions/icon-position-utility.png" alt="Support" class="filtro-rota" data-rota="Sup">
+        </div>
+    </div>
+
+    <main>
+        <section class="card-container">
+            <!-- <article class="card">
+                <h2>JavaScript</h2>
+                <p>1995</p>
+                <p>JavaScript é uma linguagem de programação</p>
+                <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript" target="_blank">Saiba mais</a>
+            </article> -->
+
+              <!-- <article class="card">
+                <h2>Python</h2>
+                <p>1991</p>
+                <p>Python é uma linguagem de programação</p>
+                <a href="https://docs.python.org/pt-br/3.14/" target="_blank">Saiba mais</a>
+            </article>
+        </section> -->
+
+    </main>
+
+    <footer class="footer">
+        <ul class="footer-links">
+            <li><a href="https://www.leagueoflegends.com/pt-br/" target="_blank">Site Oficial</a></li>
+            <li><a href="https://universe.leagueoflegends.com/pt_BR/" target="_blank">Universo (Lore)</a></li>
+            <li><a href="https://lolesports.com/" target="_blank">eSports</a></li>
+            <li><a href="https://www.youtube.com/user/RiotGamesBrasil" target="_blank">YouTube Brasil</a></li>
+        </ul>
+    </footer>
+
+    <!-- Estrutura do Modal (inicialmente oculta) -->
+    <div id="champion-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,476 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap');
+
+* {
+    box-sizing: border-box; /* Garante que padding e border não aumentem o tamanho total do elemento */
+}
+
+:root {
+    /* Paleta de Cores inspirada em League of Legends */
+    --lol-blue-dark: #010A13;   /* Fundo principal, quase preto */
+    --lol-blue-medium: #0A1428; /* Fundo dos cards */
+    --lol-gold: #C89B3C;       /* Destaques, bordas, títulos */
+    --lol-gold-light: #F0E6D2; /* Texto principal, mais suave que branco */
+    --lol-cyan: #0BC6E3;       /* Links e interações */
+    --lol-grey: #5B5A56;       /* Texto secundário, placeholders */
+}
+
+body {
+    margin: 0; /* Remove a margem padrão do body */
+    background-color: var(--lol-blue-dark); /* Define a cor de fundo usando uma variável */
+    background-image: url('https://www.transparenttextures.com/patterns/dark-matter.png'); /* Textura sutil */
+    color: var(--lol-gold-light); /* Define a cor do texto padrão usando uma variável */
+    font-family: 'Lato', sans-serif; /* Define a família da fonte para o corpo */
+}
+
+header {
+    padding: 2rem 1rem; /* Espaçamento interno (2rem em cima/baixo, 1rem nos lados) */
+    display: flex; /* Habilita o layout flexbox */
+    align-items: center; /* Alinha os itens verticalmente ao centro */
+    justify-content: space-between; /* Distribui os itens com espaço entre eles */
+    position: sticky; /* Mantém o cabeçalho fixo no topo ao rolar a página */
+    top: 0;
+    background-color: rgba(1, 10, 19, 0.85); /* Fundo com leve transparência */
+    backdrop-filter: blur(5px); /* Efeito de vidro fosco */
+    z-index: 10; /* Define a ordem de empilhamento para ficar sobre outros elementos */
+    border-bottom: 1px solid var(--lol-gold); /* Adiciona uma borda inferior */
+    gap: 1rem; /* Espaçamento entre os elementos flex */
+}
+
+header h1 {
+    font-size: 1.5rem; /* Tamanho da fonte */
+    margin: 0; /* Remove a margem padrão */
+    font-weight: 500; /* Peso da fonte (médio) */
+    font-family: 'Cinzel', serif; /* Fonte épica para o título principal */
+    color: var(--lol-gold);
+    white-space: nowrap; /* Impede a quebra de linha do texto */
+}
+
+#caixa-busca input {
+    padding: 0.375rem 0.75rem; /* Espaçamento interno */
+    border-radius: 1rem; /* Arredonda as bordas */
+    border: 1px solid var(--lol-grey); /* Define a borda */
+    background: var(--lol-blue-medium); /* Cor de fundo */
+    font-family: inherit; /* Herda a família da fonte do elemento pai */
+    font-size: 1.5rem; /* Tamanho da fonte */
+    transition: all 0.2s ease; /* Adiciona uma transição suave para todas as propriedades */
+    width: 30rem; /* Largura do input */
+    color: var(--lol-gold-light); /* Cor do texto digitado */
+    margin-right: .5rem; /* Margem à direita */
+}
+
+#caixa-busca input::placeholder {
+    font-size: 1.2rem; /* Tamanho da fonte do placeholder */
+    font-weight: 300; /* Peso da fonte do placeholder */
+    color: var(--lol-grey); /* Cor do texto do placeholder */
+}
+
+#caixa-busca input:focus {
+    outline: none; /* Remove a borda de foco padrão */
+    border-color: var(--lol-cyan); /* Muda a cor da borda ao focar */
+    box-shadow: 0 0 0 0.1rem var(--lol-cyan); /* Adiciona uma sombra de caixa para indicar foco */
+}
+
+#botao-busca {
+    padding: 1rem 2rem; /* Espaçamento interno */
+    border-radius: 1rem; /* Arredonda as bordas */
+    border: 1px solid var(--lol-gold); /* Borda dourada */
+    cursor: pointer; /* Muda o cursor para uma mão ao passar por cima */
+    font-family: inherit; /* Herda a família da fonte */
+    font-weight: 500; /* Peso da fonte */
+    font-size: 1rem; /* Tamanho da fonte */
+    white-space: nowrap; /* Impede a quebra de linha do texto */
+    transition: background-color 0.2s ease, color 0.2s ease; /* Transição suave para cor de fundo e cor do texto */
+    background-color: transparent; /* Fundo transparente */
+    color: var(--lol-gold); /* Cor do texto */
+}
+
+#botao-busca:hover {
+    background-color: var(--lol-gold); /* Muda a cor de fundo ao passar o mouse */
+    color: var(--lol-blue-dark); /* Muda a cor do texto ao passar o mouse */
+    box-shadow: 0 0 10px var(--lol-gold); /* Adiciona uma sombra de caixa */
+}
+
+#botao-busca:active {
+    transform: scale(0.98); /* Efeito de clique (diminui o tamanho) */
+}
+
+main {
+    overflow-y: scroll; /* Adiciona uma barra de rolagem vertical se o conteúdo exceder a altura */
+    max-width: 80rem; /* Largura máxima do conteúdo principal */
+    margin: 0 auto; /* Centraliza o conteúdo principal horizontalmente */
+    margin-top: 2rem; /* Margem no topo */
+    /* Ajuste de altura para garantir que o footer fique visível */
+    min-height: calc(100vh - 10rem - 4rem);
+    padding-bottom: 5rem; /* Espaço para o footer não sobrepor o conteúdo */
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.card {
+    background-color: var(--lol-blue-medium);
+    border: 2px solid var(--lol-grey);
+    border-radius: 8px;
+    width: 220px;
+    text-align: center;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: var(--lol-gold);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.card-image {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    object-position: center top;
+    border-bottom: 2px solid var(--lol-grey);
+    transition: border-color 0.3s ease;
+}
+
+.card:hover .card-image {
+    border-color: var(--lol-gold);
+}
+
+.card-content {
+    padding: 1rem;
+}
+
+.card-content h2 {
+    margin: 0 0 0.5rem 0;
+    font-family: 'Cinzel', serif;
+    color: var(--lol-gold);
+    font-size: 1.2rem;
+}
+
+.card-content p {
+    margin: 0;
+    color: var(--lol-grey);
+    font-size: 0.9rem;
+}
+
+.not-found {
+    color: var(--lol-gold-light);
+    font-size: 1.5rem;
+    font-family: 'Cinzel', serif;
+    padding: 3rem;
+    text-align: center;
+    width: 100%;
+}
+
+.champion-portrait {
+    width: 120px;
+    height: 120px;
+    border: 3px solid var(--lol-grey);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    object-fit: cover;
+    object-position: center top;
+}
+
+.champion-portrait:hover {
+    transform: scale(1.1);
+    border-color: var(--lol-gold);
+}
+
+/* Estilos do Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.modal-content {
+    background-color: var(--lol-blue-medium);
+    border: 2px solid var(--lol-gold);
+    border-radius: 8px;
+    padding: 2rem;
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    display: flex; /* Adicionado para centralizar conteúdo interno */
+    overflow-y: auto;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: var(--lol-gold-light);
+    font-size: 2.5rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+#modal-body {
+    display: flex;
+    gap: 2rem;
+    flex-direction: row; /* Organiza os itens em linha (lado a lado) */
+    align-items: flex-start; /* Alinha os itens no topo */
+    width: 100%; /* Garante que o corpo do modal ocupe o espaço */
+}
+
+.modal-image {
+    width: 250px;
+    height: 450px;
+    object-fit: cover; /* Mantém a proporção da imagem */
+    border-radius: 4px;
+    border: 2px solid var(--lol-grey);
+}
+
+.modal-info {
+    text-align: left; /* Alinha o texto à esquerda */
+    flex: 1;
+}
+
+#modal-body h2 {
+    margin-top: 0;
+    font-family: 'Cinzel', serif;
+    color: var(--lol-gold);
+    font-size: 2.5rem;
+}
+
+#modal-body p {
+    color: var(--lol-gold-light);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+#modal-body .historia {
+    font-style: italic;
+}
+
+#modal-body p strong {
+    color: var(--lol-cyan);
+    font-weight: 700;
+}
+
+#modal-body a {
+    display: inline-block;
+    margin-top: 1.5rem;
+    color: var(--lol-gold);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border: 1px solid var(--lol-gold);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+#modal-body a:hover {
+    background-color: var(--lol-gold);
+    color: var(--lol-blue-dark);
+}
+
+.filter-bar {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    background-color: var(--lol-blue-medium);
+    border-bottom: 1px solid var(--lol-gold);
+    position: sticky;
+    top: 105px; /* Altura aproximada do header para "grudar" abaixo dele */
+    z-index: 9; /* Garante que fique acima do conteúdo principal, mas abaixo do header */
+    transition: top 0.3s ease; /* Adiciona uma transição suave para a mudança de layout em telas menores */
+}
+
+#filtros-rota-icones {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.filtro-rota {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    opacity: 0.5;
+    filter: grayscale(80%);
+    transition: all 0.2s ease-in-out;
+}
+
+.filtro-rota.active,
+.filtro-rota:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: scale(1.1);
+}
+.habilidades-container {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.habilidade-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.habilidade-img {
+    width: 48px;
+    height: 48px;
+    border: 2px solid var(--lol-gold);
+    border-radius: 4px;
+    background-color: #000;
+}
+
+.habilidade-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.habilidade-key {
+    font-weight: 700;
+    color: var(--lol-gold);
+}
+
+.habilidade-nome {
+    font-size: 0.9rem;
+    color: var(--lol-gold-light);
+}
+
+.saiba-mais {
+    display: inline-block;
+    margin-top: 1.5rem;
+    color: var(--lol-gold);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border: 1px solid var(--lol-gold);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.saiba-mais:hover {
+    background-color: var(--lol-gold);
+    color: var(--lol-blue-dark);
+}
+
+.footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: var(--lol-grey);
+    background-color: var(--lol-blue-dark);
+    padding: 15px 20px;
+    border-top: 1px solid var(--lol-gold);
+    font-size: 0.8rem;
+    margin-top: 2rem;
+}
+
+.footer-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links a {
+    color: var(--lol-grey);
+    text-decoration: none;
+    transition: color 0.2s;
+    font-weight: 700;
+}
+
+.footer-links a:hover {
+    color: var(--lol-cyan);
+}
+
+@media (max-width: 768px) {
+    header { /* Estilos para telas com largura máxima de 768px */
+        flex-direction: column; /* Organiza os itens do cabeçalho em coluna */
+        padding: 1rem; /* Reduz o espaçamento interno */
+    }
+
+    header h1 { /* Estilos para o h1 no cabeçalho em telas menores */
+        text-align: center; /* Centraliza o texto */
+        margin-bottom: 1rem; /* Adiciona margem inferior */
+    }
+    
+    .filter-bar {
+        top: 180px; /* Ajusta a posição do sticky para o novo layout do header em telas menores */
+    }
+
+    div input { /* Estilos para o input em telas menores */
+        width: 90vw; /* Largura baseada na largura da viewport */
+        font-size: 1.2rem; /* Reduz o tamanho da fonte */
+    }
+
+    main { /* Estilos para o main em telas menores */
+        padding: 0 1rem; /* Adiciona espaçamento lateral */
+    }
+
+    #modal-body {
+        flex-direction: column;
+        align-items: center;
+        text-align: center; /* Centraliza o texto no modo coluna para telas menores */
+    }
+
+    .modal-image {
+        width: 80%;
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 600px) {
+}
+
+
+@media (max-width: 480px) {
+    header h1 { /* Estilos para o h1 em telas com largura máxima de 480px */
+        font-size: 1rem; /* Reduz ainda mais o tamanho da fonte */
+        max-width: 70%; /* Define uma largura máxima */
+        word-wrap: break-word; /* Permite a quebra de palavras longas */
+    }
+
+    #caixa-busca input, /* Estilos para o input e seu placeholder em telas muito pequenas */
+    #caixa-busca input::placeholder {
+        font-size: 1rem; /* Reduz o tamanho da fonte */
+    }
+
+    article h2 { /* Estilos para o h2 do article em telas muito pequenas */
+        font-size: 1.3rem; /* Reduz o tamanho da fonte */
+    }
+
+    #caixa-busca { /* Estilos para a div do cabeçalho em telas muito pequenas */
+        display: flex; /* Habilita flexbox */
+        align-items: center; /* Alinha itens ao centro */
+        justify-content: center; /* Centraliza itens */
+        flex-direction: column; /* Organiza em coluna */
+        gap: 0.5rem; /* Espaçamento entre os itens */
+    }
+
+    button { /* Estilos para o botão em telas muito pequenas */
+        margin-top: 1rem; /* Adiciona margem no topo */
+    }
+}
